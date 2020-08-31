@@ -1,6 +1,6 @@
 // Scott Hale (Oxford Internet Institute)
 // Requires sigma.js and jquery to be loaded
-// based on parseGexf from Mathieu Jacomy @ Sciences Po Médialab & WebAtlas
+// based on parseGexf from Mathieu Jacomy @ Sciences Po MÃ©dialab & WebAtlas
 
 sigma.publicPrototype.parseJson = function(jsonPath,callback) {
 	var sigmaInstance = this;
@@ -9,6 +9,12 @@ sigma.publicPrototype.parseJson = function(jsonPath,callback) {
 			var id=data.nodes[i].id;
 			//window.NODE = data.nodes[i];//In the original, but not sure purpose
 			sigmaInstance.addNode(id,data.nodes[i]);
+			
+			//inverting graph y axis
+			node = data.nodes[i];
+			node.y = (node.y)*(-1); 
+
+			sigmaInstance.addNode(id,node);
 		}
 
 		for(j=0; j<data.edges.length; j++){
